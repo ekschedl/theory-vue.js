@@ -27,7 +27,7 @@ export default {
       posts: [
         {
           id:0,
-          text:'Text first',
+          text:'My Text first ',
           icon: 'setting.png'
         },
         {
