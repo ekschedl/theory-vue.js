@@ -1,28 +1,79 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<div> 
+  <h1> Lesson 4: {{ title }} </h1>
+  <ul>
+    <li>
+        <img :src="require(`@/assets/images/${posts[0].icon}`)" :alt="posts[0].icon">     
+        <span>{{posts[0].text}} {{" '- i am javascript code' "}}{{(1+2)}}</span>
+    </li>
+    <li>
+        <img :src="require(`@/assets/images/${posts[1].icon}`)":alt="posts[1].icon">   
+        <span>{{posts[1].text}}</span>
+    </li>
+    <li>
+        <img :src="require(`@/assets/images/${posts[2].icon}`)" :alt="posts[2].icon">   
+        <span>{{posts[2].text}}</span>
+    </li>
+  </ul>
+  <span class="total"> Всего строк: 3</span>
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  data (){
+    return{
+      title: 'Data, Computed',
+      posts: [
+        {
+          id:0,
+          text:'Text first',
+          icon: 'setting.png'
+        },
+        {
+          id:1,
+          text:'Text second',
+          icon: 'user.png'
+        },
+        {
+          id:2,
+          text:'Text third',
+          icon: 'phone.png'
+        }
+      ]
+    }
   }
-}
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+
+<style lang="scss">
+
+  ul {
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    img {
+      margin-right: 10px;
+    }
+
+    &:hover {
+      color: red;
+    }
+
+    &.checked {
+      color: red;
+    }
+  }
 }
+
+.total {
+  padding-left: 40px;
+}
+
 </style>
