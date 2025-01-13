@@ -15,19 +15,19 @@
         <span>{{posts[2].text}}</span>
     </li>
   </ul>
-  <span class="total"> Всего строк: 3</span>
+  <span class="total"> Total: {{ totalCount }} </span>
 </div>
 </template>
 
 <script>
 export default {
   data (){
-    return{
+    return {
       title: 'Data, Computed',
       posts: [
         {
           id:0,
-          text:'My Text first ',
+          text:'Text first ',
           icon: 'setting.png'
         },
         {
@@ -42,8 +42,15 @@ export default {
         }
       ]
     }
+  },
+  computed: {
+    totalCount(){
+      return this.posts.length + " texts"
+    }
+
+    }
   }
-};
+
 </script>
 
 
