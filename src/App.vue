@@ -1,66 +1,56 @@
 <template>
-<div> 
-  <h1> Lesson 4: {{ title }} </h1>
-  <ul>
-    <li :class="posts[0].checked ? 'checked' : ''">
-        <img :src="require(`@/assets/images/${posts[0].icon}`)" :alt="posts[0].icon">     
-        <span>{{posts[0].text}} {{" '- i am javascript code' "}}{{(1+2)}}</span>
-    </li>
-    <li :class="posts[1].checked ? 'checked' : ''">
-        <img :src="require(`@/assets/images/${posts[1].icon}`)":alt="posts[1].icon">   
-        <span>{{posts[1].text}}</span>
-    </li>
-    <li class="list-item" :class="posts[2].checked ? 'checked' : ''">
-      <img :src="require(`@/assets/images/${posts[2].icon}`)" :alt="posts[2].icon">   
-        <span>{{posts[2].text}}</span>
-    </li>
-  </ul>
-  <span class="total"> Total: {{ totalCount }} </span>
-</div>
+  <div>
+    <h1>Lesson 4: {{ title }}</h1>
+    <ul>
+      <list-item :text="posts[0].text" :icon="posts[0].icon" />
+
+      <list-item :text="posts[1].text" :icon="posts[1].icon" />
+
+      <list-item :text="posts[2].text" :icon="posts[2].icon" />
+    </ul>
+    <span class="total"> Total: {{ totalCount }} </span>
+  </div>
 </template>
 
 <script>
+import ListItem from "@/components/ListItem";
 export default {
-  data (){
+  components: { ListItem },
+  data() {
     return {
-      title: 'Data, Computed',
+      title: "Data, Computed",
       posts: [
         {
-          id:0,
-          text:'Text first ',
-          icon: 'setting.png',
-          checked: true
+          id: 0,
+          text: "Text first ",
+          icon: "setting.png",
+          checked: false,
         },
         {
-          id:1,
-          text:'Text second',
-          icon: 'user.png',
-          checked: true
+          id: 1,
+          text: "Text second",
+          icon: "user.png",
+          checked: true,
         },
         {
-          id:2,
-          text:'Text third',
-          icon: 'phone.png',
-          checked: true
-        }
-      ]
-    }
+          id: 2,
+          text: "Text third",
+          icon: "phone.png",
+          checked: true,
+        },
+      ],
+    };
   },
   computed: {
-    totalCount(){
-      return this.posts.length + " texts"
-    }
-
-    }
-  }
-
+    totalCount() {
+      return this.posts.length + " texts";
+    },
+  },
+};
 </script>
 
-
-
 <style lang="scss">
-
-  ul {
+ul {
   list-style: none;
 
   li {
@@ -85,5 +75,4 @@ export default {
 .total {
   padding-left: 40px;
 }
-
 </style>
