@@ -1,12 +1,22 @@
 <template>
   <div>
-    <h1>Lesson 4: {{ title }}</h1>
+    <!-- <h1 v-if="isDirectives">Lesson 4: Directives</h1>
+    <h1 v-else>Lesson 4: {{ title }}</h1>  oder:-->
+    <h1 v-show="isDirectives">Lesson 4: Directives</h1>
+    <h1 v-show="!isDirectives">Lesson 4: {{ title }}</h1>
     <ul>
-      <list-item :text="posts[0].text" :icon="posts[0].icon" />
-
-      <list-item :text="posts[1].text" :icon="posts[1].icon" />
-
-      <list-item :text="posts[2].text" :icon="posts[2].icon" />
+      <list-item
+        v-for="post in posts"
+        :key="post.id"
+        :text="post.text"
+        :icon="post.icon"
+      >
+        <template v-slot:pretext>
+          <span>Pretext</span>
+        </template>
+        <span>Some text</span>
+      </list-item>
+      <!-- if we have no ID we use the UUID library -->
     </ul>
     <span class="total"> Total: {{ totalCount }} </span>
   </div>
@@ -14,26 +24,29 @@
 
 <script>
 import ListItem from "@/components/ListItem";
+import { v4 as uuidv4 } from "uuid";
+
 export default {
   components: { ListItem },
   data() {
     return {
       title: "Data, Computed",
+      isDirectives: true,
       posts: [
         {
-          id: 0,
+          id: uuidv4(),
           text: "Text first ",
           icon: "setting.png",
           checked: false,
         },
         {
-          id: 1,
+          id: uuidv4(),
           text: "Text second",
           icon: "user.png",
           checked: true,
         },
         {
-          id: 2,
+          id: uuidv4(),
           text: "Text third",
           icon: "phone.png",
           checked: true,
